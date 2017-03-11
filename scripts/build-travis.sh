@@ -10,10 +10,11 @@ then
     export CXX=g++-5
 fi
 
-npm install --build-from-source
+npm install
+npm run prebuild
 npm test
 
-node_modules/.bin/node-pre-gyp package
+# node_modules/.bin/node-pre-gyp package
 
 COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
 TAG=$TRAVIS_TAG

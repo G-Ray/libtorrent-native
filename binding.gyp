@@ -25,7 +25,7 @@
 
     "targets": [
         {
-            "target_name": "<(module_name)",
+            "target_name": "libtorrent-native",
             "sources": [
                 "src/libtorrent.cc",
                 "src/add_torrent_params.cc",
@@ -110,26 +110,26 @@
                 }]
             ]
         },
-        {
-            "target_name": "post_build_action",
-            "type": "none",
-            "dependencies": [ "<(module_name)" ],
-            "copies": [
-                {
-                    "files": [ "<(PRODUCT_DIR)/<(module_name).node" ],
-                    "destination": "<(module_path)"
-                }
-            ],
-            "conditions": [
-                [ 'OS=="win"', {
-                    "copies": [
-                        {
-                            "files": [ '<(openssl_root)/libeay32.dll','<(openssl_root)/ssleay32.dll' ],
-                            "destination": "<(module_path)"
-                        }
-                    ]
-                }]
-            ]
-        }
+        # {
+        #     "target_name": "post_build_action",
+        #     "type": "none",
+        #     "dependencies": [ "libtorrent-native" ],
+        #     "copies": [
+        #         {
+        #             "files": [ "<(PRODUCT_DIR)/<(module_name).node" ],
+        #             "destination": "<(module_path)"
+        #         }
+        #     ],
+        #     "conditions": [
+        #         [ 'OS=="win"', {
+        #             "copies": [
+        #                 {
+        #                     "files": [ '<(openssl_root)/libeay32.dll','<(openssl_root)/ssleay32.dll' ],
+        #                     "destination": "<(module_path)"
+        #                 }
+        #             ]
+        #         }]
+        #     ]
+        # }
     ]
 }

@@ -38,6 +38,7 @@ cache:
   directories:
     - $HOME/boost
     - $HOME/libtorrent
+    - $HOME/openssl
 
 install:
   - export MACOSX_DEPLOYMENT_TARGET=10.9
