@@ -103,7 +103,9 @@
                   'OS=="linux"', {
                     "libraries": [
                         "$(HOME)/boost/lib/libboost_system.a",
-                        "$(HOME)/libtorrent/lib/libtorrent-rasterbar.a"
+                        "$(HOME)/libtorrent/lib/libtorrent-rasterbar.a",
+                        "$(HOME)/openssl/lib/libssl.a",
+                        "$(HOME)/openssl/lib/libcrypto.a"
                     ]
                 }]
             ]
