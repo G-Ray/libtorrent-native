@@ -1,10 +1,10 @@
 {
-  "name": "porla-libtorrent",
+  "name": "libtorrent-native",
   "version": "0.14.0",
   "description": "Rasterbar-libtorrent bindings for Node.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/porla/libtorrent-nodejs"
+    "url": "git+https://github.com/tortank-team/libtorrent-native"
   },
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
     "test": "mocha --timeout 60000"
   },
   "binary": {
-    "module_name": "porla_libtorrent",
+    "module_name": "libtorrent_native",
     "module_path": "./lib/binding/{node_abi}-{platform}-{arch}",
     "host": "https://porla-binaries.s3.amazonaws.com",
     "remote_path": "./{name}/v{version}/{toolset}",
