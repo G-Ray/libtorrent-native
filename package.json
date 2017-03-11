@@ -24,8 +24,8 @@
     "segfault-handler": "^1.0.0"
   },
   "dependencies": {
-    "nan": "^2.4.0",
-    "node-pre-gyp": "^0.6.32"
+    "nan": "2.4.0",
+    "node-pre-gyp": "0.6.32"
   },
   "main": "./index.js"
 }
