@@ -3,28 +3,10 @@ language: cpp
 matrix:
   fast_finish: true
   include:
-    - env: NODE_VERSION=4
-      os: linux
-
-    - env: NODE_VERSION=5
-      os: linux
-
     - env: NODE_VERSION=6
       os: linux
 
-    - env: NODE_VERSION=7
-      os: linux
-
-    - env: NODE_VERSION=4
-      os: osx
-
-    - env: NODE_VERSION=5
-      os: osx
-
     - env: NODE_VERSION=6
-      os: osx
-
-    - env: NODE_VERSION=7
       os: osx
 
 addons:
