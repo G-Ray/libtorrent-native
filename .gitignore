@@ -46,3 +46,6 @@ jspm_packages
 # node-gyp build
 build/
 lib/
+
+boost*
+openssl*
