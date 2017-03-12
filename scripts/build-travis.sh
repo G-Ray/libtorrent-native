@@ -15,11 +15,3 @@ npm run prebuild
 npm test
 
 # node_modules/.bin/node-pre-gyp package
-
-COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
-TAG=$TRAVIS_TAG
-
-if [[ "$COMMIT_MESSAGE" =~ ^:shipit:.* ]] && [[ "$TAG" =~ ^v.* ]] ; then
-    echo shipping
-    node_modules/.bin/node-pre-gyp publish
-fi

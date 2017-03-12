@@ -1,13 +1,21 @@
 language: cpp
 
+deploy:
+  provider: npm
+  email: geoffrey.bonneville@gmail.com
+  api_key:
+    secure: anLZgdri177TB+end4vUGBSbWLZVLbSXPOFsF51UkdHqOwv+/oJeVLVzlrUabYr6u7Akt0e/IK2pkVyd3p1lFXyc4b04Dw9gZluEBENbZ0OKtptZ0N/QfmV93veRwpH0DsHgjpbEbOPAgPkoq3qzrbVuL4alQIw9Ngsmiv8SFj2bcrIRxv0ch93Hnrcf4JQblfvEPHQEEry9lSghUKjCOtFhCYL4+KLenCvTQReQqHQZeOcy/oicSrqlrVk+GKjTgW+OJ85ZUI0dztOVjhW7VU1mcL3DbYzbxyezeUGBFfAtAecS+uNnBS6Q8FJvYvB01/X8QXu7T0OliA5UQx+8jFYUZDBMXeqU5SPnT7OIB02O4T9+G2FdnGd8MY4dK/cue82J5ILPDvsqcFD4lyrgODj64gTI2xrEOqhQn+3XZVaTP6POrNlx2/QvCfbcWPgAHaU8E+JvOhwachZ3xj7JErXcgiYYdbgip9DpP31Bm4mIF7AKRyw1gv8M0PAImtdwZQdVA+06I61xEXdTqcIHyEmEmN8bJ6mHdtk9Az7VVnJqXv8eKt+F3Aa8xP3CbeGYeUAc4LIc+r22ELufq46hHNNXuLJW+U5exg1xi7pLisIm3xR05P8mIlcQWioMUJOVPoGyZdjcs7d+1czAHTOQTSV9DtwztLJhV7n+4bHwFyc=
+  on:
+    tags: true
+    repo: tortank-team/libtorrent-native
+
 matrix:
   fast_finish: true
   include:
-    - env: NODE_VERSION=6
-      os: linux
-
-    - env: NODE_VERSION=6
-      os: osx
+  - env: NODE_VERSION=6
+    os: linux
+  - env: NODE_VERSION=6
+    os: osx
 
 addons:
   apt:
@@ -18,23 +26,22 @@ addons:
 
 cache:
   directories:
-    - $HOME/boost
-    - $HOME/libtorrent
-    - $HOME/openssl
+  - "$HOME/boost"
+  - "$HOME/libtorrent"
+  - "$HOME/openssl"
 
 install:
-  - export MACOSX_DEPLOYMENT_TARGET=10.9
-  - source scripts/install-node.sh $NODE_VERSION
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then scripts/install-boost.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then scripts/install-openssl.sh; fi
-  - scripts/install-libtorrent.sh
+- export MACOSX_DEPLOYMENT_TARGET=10.9
+- source scripts/install-node.sh $NODE_VERSION
+- if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then scripts/install-boost.sh; fi
+- if [[ "$TRAVIS_OS_NAME" != "osx" ]]; then scripts/install-openssl.sh; fi
+- scripts/install-libtorrent.sh
 
 script:
-  - export CPATH=$CPATH:$HOME/boost/include
-  - export CPATH=$CPATH:$HOME/openssl/include
-  - export CPATH=$CPATH:$HOME/libtorrent/include
-  - export LIBRARY_PATH=$LIBRARY_PATH:$HOME/boost/lib
-  - export LIBRARY_PATH=$LIBRARY_PATH:$HOME/openssl/lib
-  - export LIBRARY_PATH=$LIBRARY_PATH:$HOME/libtorrent/lib
-
-  - scripts/build-travis.sh
+- export CPATH=$CPATH:$HOME/boost/include
+- export CPATH=$CPATH:$HOME/openssl/include
+- export CPATH=$CPATH:$HOME/libtorrent/include
+- export LIBRARY_PATH=$LIBRARY_PATH:$HOME/boost/lib
+- export LIBRARY_PATH=$LIBRARY_PATH:$HOME/openssl/lib
+- export LIBRARY_PATH=$LIBRARY_PATH:$HOME/libtorrent/lib
+- scripts/build-travis.sh
