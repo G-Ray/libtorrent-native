@@ -116,7 +116,7 @@ NAN_METHOD(TorrentHandle::New)
     if (info.IsConstructCall())
     {
         libtorrent::torrent_handle* th = static_cast<libtorrent::torrent_handle*>(info[0].As<v8::External>()->Value());
-        
+
         TorrentHandle* obj = new TorrentHandle(std::make_unique<libtorrent::torrent_handle>(*th));
         obj->Wrap(info.This());
 
@@ -125,7 +125,9 @@ NAN_METHOD(TorrentHandle::New)
     else
     {
         v8::Local<v8::Function> cons = Nan::New(constructor);
-        info.GetReturnValue().Set(cons->NewInstance());
+        Nan::MaybeLocal<v8::Object> maybeInstance = Nan::NewInstance(cons);
+        v8::Local<v8::Object> instance = maybeInstance.ToLocalChecked();
+      info.GetReturnValue().Set(instance);
     }
 }
 
@@ -136,7 +138,8 @@ v8::Local<v8::Object> TorrentHandle::NewInstance(v8::Local<v8::Value> arg)
     const unsigned argc = 1;
     v8::Local<v8::Value> argv[argc] = { arg };
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
-    v8::Local<v8::Object> instance = cons->NewInstance(argc, argv);
+    Nan::MaybeLocal<v8::Object> maybeInstance = Nan::NewInstance(cons, argc, argv);
+    v8::Local<v8::Object> instance = maybeInstance.ToLocalChecked();
 
     return scope.Escape(instance);
 }
@@ -173,7 +176,7 @@ NAN_METHOD(TorrentHandle::HavePiece)
 NAN_METHOD(TorrentHandle::GetPeerInfo)
 {
     TorrentHandle* obj = Nan::ObjectWrap::Unwrap<TorrentHandle>(info.This());
-    
+
     std::vector<libtorrent::peer_info> peers;
     obj->th_->get_peer_info(peers);
 
@@ -301,7 +304,7 @@ NAN_METHOD(TorrentHandle::FileProgress)
     TorrentHandle* obj = Nan::ObjectWrap::Unwrap<TorrentHandle>(info.This());
 
     int flags = 0;
-    
+
     if (info.Length() >= 1)
     {
         flags = info[0]->Int32Value();
@@ -409,14 +412,14 @@ NAN_METHOD(TorrentHandle::AddTracker)
     TorrentHandle* obj = Nan::ObjectWrap::Unwrap<TorrentHandle>(info.This());
 
     libtorrent::announce_entry ae;
-    
+
     v8::Local<v8::Object> t = info[0]->ToObject();
 
     if (t->Has(Nan::New("url").ToLocalChecked()))
     {
         ae.url = *Nan::Utf8String(t->Get(Nan::New("url").ToLocalChecked()));
     }
-    
+
     if (t->Has(Nan::New("tier").ToLocalChecked()))
     {
         ae.tier = t->Get(Nan::New("tier").ToLocalChecked())->Int32Value();
@@ -485,7 +488,7 @@ NAN_METHOD(TorrentHandle::HttpSeeds)
 
 NAN_METHOD(TorrentHandle::SetMetadata)
 {
-    TorrentHandle* obj = Nan::ObjectWrap::Unwrap<TorrentHandle>(info.This());
+    // TorrentHandle* obj = Nan::ObjectWrap::Unwrap<TorrentHandle>(info.This());
     // TODO
     Nan::ThrowError("Not implemented.");
 }
@@ -603,7 +606,7 @@ NAN_METHOD(TorrentHandle::SetSslCertificate)
     std::string private_key = *Nan::Utf8String(params->Get(Nan::New("private_key").ToLocalChecked()));
     std::string dh_params = *Nan::Utf8String(params->Get(Nan::New("dh_params").ToLocalChecked()));
     std::string passphrase = "";
-    
+
     if (params->Has(Nan::New("passphrase").ToLocalChecked()))
     {
         passphrase = *Nan::Utf8String(params->Get(Nan::New("dh_params").ToLocalChecked()));

@@ -267,7 +267,9 @@ NAN_METHOD(SettingsPack::New)
     else
     {
         v8::Local<v8::Function> cons = Nan::New(constructor);
-        info.GetReturnValue().Set(cons->NewInstance());
+        Nan::MaybeLocal<v8::Object> maybeInstance = Nan::NewInstance(cons);
+        v8::Local<v8::Object> instance = maybeInstance.ToLocalChecked();
+        info.GetReturnValue().Set(instance);
     }
 }
 
@@ -299,7 +301,8 @@ v8::Local<v8::Object> SettingsPack::NewInstance(v8::Local<v8::Value> arg)
     const unsigned argc = 1;
     v8::Local<v8::Value> argv[argc] = { arg };
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
-    v8::Local<v8::Object> instance = cons->NewInstance(argc, argv);
+    Nan::MaybeLocal<v8::Object> maybeInstance = Nan::NewInstance(cons, argc, argv);
+    v8::Local<v8::Object> instance = maybeInstance.ToLocalChecked();
 
     return scope.Escape(instance);
 }

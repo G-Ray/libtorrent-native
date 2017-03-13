@@ -52,18 +52,19 @@ NAN_METHOD(CreateTorrent::New)
         if (info.Length() > 0 && info[0]->IsObject())
         {
             auto params = info[0]->ToObject();
-            auto fs = Nan::New("fs").ToLocalChecked();
+            // auto fs = Nan::New("fs").ToLocalChecked();
             auto ti = Nan::New("ti").ToLocalChecked();
 
-            if (params->Has(fs) && params->Get(fs)->IsObject())
-            {
-                v8::Local<v8::Object> fsObject = params->Get(fs)->ToObject();
-                FileStorage* fileStorage = Nan::ObjectWrap::Unwrap<FileStorage>(fsObject);
-
-                //auto ct = std::make_unique<libtorrent::create_torrent>(fileStorage->GetWrapped());
-                //obj = new CreateTorrent(std::move(ct));
-            }
-            else if (params->Has(ti) && params->Get(ti)->IsObject())
+            // if (params->Has(fs) && params->Get(fs)->IsObject())
+            // {
+            //     v8::Local<v8::Object> fsObject = params->Get(fs)->ToObject();
+            //     FileStorage* fileStorage = Nan::ObjectWrap::Unwrap<FileStorage>(fsObject);
+            //
+            //     //auto ct = std::make_unique<libtorrent::create_torrent>(fileStorage->GetWrapped());
+            //     //obj = new CreateTorrent(std::move(ct));
+            // }
+            // else
+            if (params->Has(ti) && params->Get(ti)->IsObject())
             {
                 v8::Local<v8::Object> tiObject = params->Get(ti)->ToObject();
                 TorrentInfo* torrentInfo = Nan::ObjectWrap::Unwrap<TorrentInfo>(tiObject);

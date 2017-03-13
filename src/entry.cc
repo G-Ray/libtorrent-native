@@ -115,6 +115,10 @@ v8::Local<v8::Value> Entry::ToJson(libtorrent::entry const& entry)
         auto pre = entry.preformatted();
         return Nan::CopyBuffer(&pre[0], static_cast<uint32_t>(pre.size())).ToLocalChecked();
     }
+    case libtorrent::entry::data_type::undefined_t:
+    {
+        return Nan::Undefined();
+    }
     }
 
     return Nan::Undefined();

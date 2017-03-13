@@ -35,9 +35,9 @@ libtorrent::add_torrent_params AddTorrentParams::FromObject(v8::Local<v8::Object
         params.flags = static_cast<libtorrent::add_torrent_params::flags_t>(object->Get(flags)->Int32Value());
     }
 
-    if (object->Has(active_time) && object->Get(active_time)->IsNumber())
+    if (object->Has(active_time) && object->Get(active_time)->IsInt32())
     {
-        params.active_time = object->Get(active_time)->ToNumber()->Int32Value();
+        params.active_time = object->Get(active_time)->Int32Value();
     }
 
     if (object->Has(info_hash) && object->Get(info_hash)->IsString())

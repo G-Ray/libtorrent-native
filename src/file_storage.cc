@@ -67,7 +67,8 @@ v8::Local<v8::Object> FileStorage::NewInstance(v8::Local<v8::Value> arg)
     const unsigned argc = 1;
     v8::Local<v8::Value> argv[argc] = { arg };
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor);
-    v8::Local<v8::Object> instance = cons->NewInstance(argc, argv);
+    Nan::MaybeLocal<v8::Object> maybeInstance = Nan::NewInstance(cons, argc, argv);
+    v8::Local<v8::Object> instance = maybeInstance.ToLocalChecked();
 
     return scope.Escape(instance);
 }
@@ -194,7 +195,7 @@ NAN_METHOD(FileStorage::FilePathHash)
 NAN_METHOD(FileStorage::AllPathHashes)
 {
     FileStorage* obj = Nan::ObjectWrap::Unwrap<FileStorage>(info.This());
-    
+
     std::unordered_set<uint32_t> hashes;
     obj->fs_.get().all_path_hashes(hashes);
 
@@ -221,7 +222,7 @@ NAN_METHOD(FileStorage::Paths)
     {
         arr->Set(i, Nan::New(paths.at(i)).ToLocalChecked());
     }
-    
+
     info.GetReturnValue().Set(arr);
 }
 
