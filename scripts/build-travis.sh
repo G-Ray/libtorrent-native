@@ -11,7 +11,7 @@ then
 fi
 
 npm install
-npm run prebuild
+#npm run prebuild
 npm test
 
 # node_modules/.bin/node-pre-gyp package
