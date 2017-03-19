@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "install": "prebuild-install",
+    "install": "prebuild-install || node-gyp rebuild",
     "prebuild": "npm run prebuild-node && npm run prebuild-electron",
     "prebuild-node": "prebuild -t 7.4.0 -t 6.9.4 --strip --verbose",
     "prebuild-electron": "prebuild -t 1.4.15 -t 1.3.13 -t 1.2.8 -r electron --strip --verbose",

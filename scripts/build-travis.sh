@@ -10,8 +10,8 @@ then
     export CXX=g++-5
 fi
 
-# npm install
-npm run prebuild
+npm install
 npm test
+npm run prebuild
 
 # node_modules/.bin/node-pre-gyp package
