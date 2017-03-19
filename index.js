@@ -1,3 +1,4 @@
-var binding = require('node-gyp-build')(__dirname)
+var bindings = require('bindings')
+var lt = bindings('torrent-native')
 
-module.exports = binding
+module.exports = lt
