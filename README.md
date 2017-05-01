@@ -1,7 +1,7 @@
 # Node.js bindings for Rasterbar-libtorrent
 
-The base on top of which Porla is built - these Node.js bindings for
-Rasterbar-libtorrent are specifically written to support what we need to do in
-Porla, but can of course be used elsewhere.
+Originally forked from https://github.com/porla/libtorrent-nodejs
 
-If something is missing, feel free to send a pull request!
+The low level component on which tortank is built. prebuilt binaries are
+provided for recent versions of Node.js and electron on Github.
+It's not meant to be feature complete at the moment, so feel free to contribute!
