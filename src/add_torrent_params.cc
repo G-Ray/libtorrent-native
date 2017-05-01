@@ -18,6 +18,7 @@ libtorrent::add_torrent_params AddTorrentParams::FromObject(v8::Local<v8::Object
     auto max_connections = Nan::New("max_connections").ToLocalChecked();
     auto max_uploads = Nan::New("max_uploads").ToLocalChecked();
     auto save_path = Nan::New("save_path").ToLocalChecked();
+    auto url = Nan::New("url").ToLocalChecked();
     auto ti = Nan::New("ti").ToLocalChecked();
 
     if (object->Has(file_priorities) && object->Get(file_priorities)->IsArray())
@@ -59,6 +60,11 @@ libtorrent::add_torrent_params AddTorrentParams::FromObject(v8::Local<v8::Object
     if (object->Has(save_path) && object->Get(save_path)->IsString())
     {
         params.save_path = *Nan::Utf8String(object->Get(save_path)->ToString());
+    }
+
+    if (object->Has(url) && object->Get(url)->IsString())
+    {
+        params.url = *Nan::Utf8String(object->Get(url)->ToString());
     }
 
     if (object->Has(ti) && object->Get(ti)->IsObject())
