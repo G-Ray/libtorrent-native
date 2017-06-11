@@ -95,12 +95,23 @@
                     ]
                 },
                   'OS=="mac"', {
+                    "include_dirs" : [
+                        '$(HOME)/libtorrent/include',
+                        '$(HOME)/openssl/include',
+                    ],
                     "libraries": [
-                        "/usr/local/lib/libboost_system.a",
-                        "$(HOME)/libtorrent/lib/libtorrent-rasterbar.a"
+                        '/usr/local/lib/libboost_system.a',
+                        '$(HOME)/libtorrent/lib/libtorrent-rasterbar.a',
+                        '$(HOME)/openssl/lib/libssl.a',
+                        '$(HOME)/openssl/lib/libcrypto.a'
                     ]
                 },
                   'OS=="linux"', {
+                    "include_dirs" : [
+                        '$(HOME)/boost/include',
+                        '$(HOME)/libtorrent/include',
+                        '$(HOME)/openssl/include',
+                    ],
                     "libraries": [
                         "$(HOME)/boost/lib/libboost_system.a",
                         "$(HOME)/libtorrent/lib/libtorrent-rasterbar.a",
