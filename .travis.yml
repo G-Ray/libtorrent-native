@@ -9,7 +9,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: tortank-team/libtorrent-native
+    repo: G-Ray/libtorrent-native
 
 matrix:
   fast_finish: true

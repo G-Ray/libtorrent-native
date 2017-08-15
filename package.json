@@ -4,7 +4,7 @@
   "description": "Rasterbar-libtorrent bindings for Node.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tortank-team/libtorrent-native"
+    "url": "git+https://github.com/G-Ray/libtorrent-native"
   },
   "license": "MIT",
   "scripts": {
